@@ -1,0 +1,15 @@
+$cine_gray: #2c2c2c;
+
+html {
+    touch-action: none;
+}
+
+body {
+    background-color: $cine_gray;
+    color: green;
+    font-family: "myriad-pro", sans-serif;
+    font-weight: 300;
+    margin: 0 auto;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
