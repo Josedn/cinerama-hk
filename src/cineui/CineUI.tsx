@@ -1,18 +1,17 @@
 import "./CineUI.scss";
+import {
+    BrowserRouter,
+    Routes,
+    Route,
+} from "react-router-dom";
+import Home from "./pages/Home";
 
 export default function CineUI() {
     return (
-        <>
-            <div className="header">
-                cinerama-web
-            </div>
-            <div className="content">
-                content
-            </div>
-            <div className="footer">
-                footer
-            </div>
-        </>
-
+        <BrowserRouter>
+            <Routes>
+                <Route path="/" element={<Home />} />
+            </Routes>
+        </BrowserRouter>
     );
 }

@@ -1,0 +1,291 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1" />
+<link rel="shortcut icon" href="./favicon.ico" type="image/vnd.microsoft.icon" /> 
+<title>Thebbo Housekeeping</title>
+<style type="text/css">
+body {
+	background-color: #FFFFFF; 
+	color: #000000; 
+	font-size: 10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+
+span {
+	font-size:10px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+span.lol {
+	font-size:11px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+}
+
+a {
+	color: #666666;
+}
+
+#boxtitle {
+	background-color: #0066CC; color: #FFFFFF; font-weight:bold;
+}
+
+#box {
+	background-color: #FFFFFF;
+	color: #000000; 
+	font-size: 10.5px;
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	text-align: left;
+	margin: 0;
+	padding: 0;
+}
+
+#boxlink {
+	color: #666666;
+}
+</style>
+
+<script type="text/javascript">
+function popClient()
+{
+	window.open('./?_cmd=client', 'Lan', 'width=980,height=600,location=no,status=no,menubar=no,directories=no,toolbar=no,resizable=no,scrollbars=no'); return false;
+}
+function Toggle(id)
+{
+	var List = document.getElementById('list-' + id);
+	var Button = document.getElementById('plus-' + id);
+	
+	if (List.style.display == 'block' || List.style.display == '')
+	{
+		List.style.display = 'none';
+		Button.innerHTML = '+';
+	}
+	else
+	{
+		List.style.display = 'block';
+		Button.innerHTML = '-';
+	}
+	
+	setCookie('tab-' + id, List.style.display, 9999);	
+}
+
+function t(id)
+{
+	var el = document.getElementById(id);
+	
+	if (el.style.display == 'block' || el.style.display == '')
+	{
+		el.style.display = 'none';
+	}
+	else
+	{
+		el.style.display = 'block';
+	}
+}
+
+function setCookie(c_name,value,expiredays)
+{
+	var exdate=new Date();
+	exdate.setDate(exdate.getDate()+expiredays);
+	document.cookie=c_name+ "=" +escape(value)+
+	((expiredays==null) ? "" : ";expires="+exdate.toGMTString());
+}
+
+function checkCookies()
+{
+	ca = document.cookie.split(';');
+
+	for (i = 0; i < ca.length; i++)
+	{
+		bits = ca[i].split('=');
+		
+		key = trim(bits[0]);
+		value = trim(bits[1]);
+		
+		if (key.substr(0, 3) == 'tab')
+		{
+			tabName = key.substr(4);
+			
+			if (value == 'none')
+			{
+				Toggle(tabName);
+			}
+		}
+	}
+}
+
+function trim(value)
+{
+	value = value.replace(/^\s+/,''); 
+	value = value.replace(/\s+$/,'');
+	return value;
+}
+	</script>
+</head>
+
+<body>
+<center>
+<table width="97%">
+<tr>
+<td>
+<h2><i>Thebbo Housekeeping</i></h2>
+<p align="left">Logged as: <b>Jose</b></p>
+</td>
+
+<td>
+<p align="center">
+uberEmulator e,�<br /><br />Usuarios conectados: <a style="text-decoration: underline; " href="./?_cmd=online">1</a> - Record en: 0<br />Salas cargadas: 0<br /></p>
+</td>
+
+<td>
+<br />
+<p align="right"><a href="./?_cmd=bye&token=SEC-104_a79f62e9f0bfe9bdeba906fd16bca35c1">Log out</a></p>
+</td>
+</tr>
+
+<tr>
+<td height="6" id="boxtitle" colspan="3">
+</tr>
+
+<tr>
+<td id="menu" style="width: 205px;" valign="top">
+<br />
+<table id="box" cellspacing="0" cellpadding="4" border="0" style="width: 200px;">
+					<tr>
+						<td style="border:1px solid #000000;" id="boxtitle">Principal</td>
+					</tr> 
+					<tr>
+						<td style="border:1px solid #000000; border-top-width: 0px;">
+						<p>
+                        <a href="?_cmd=main" id="boxlink">P&aacute;gina Principal</a><br />
+                        <a href="#" onclick="popClient()" id="boxlink">Entrar al Hotel</a><br />
+                        <a href="http://www.habbolan.net/" id="boxlink">Regresar</a><br />
+                        <a href="?_cmd=notes" id="boxlink">To-do List</a><br />
+                        <a href="?_cmd=forum" id="boxlink"><b>Foro Staff</b></a><br />
+                        <a href="?_cmd=words" id "boxlink">Filtro de palabras</a><br />
+                        <a href="?_cmd=online" id="boxlink">Usuarios conectados (1)</a>
+                        </p>	
+						</td>
+
+					</tr>
+				</table>
+<br />
+<table id="box" cellspacing="0" cellpadding="4" border="0" style="width: 200px;">
+					<tr>
+						<td style="border:1px solid #000000;" id="boxtitle">Herramientas del Hotel</td>
+					</tr> 
+					<tr>
+						<td style="border:1px solid #000000; border-top-width: 0px;">
+						<p>
+                        
+                        <a href="./?_cmd=maint" id="boxlink">Mantenimiento</a><br />
+                        <a href="./?_cmd=badges" id="boxlink">Placas de usuarios</a><br />
+                        <a href="./?_cmd=badgedefs" id="boxlink">Definiciones de Placas</a><br />
+                        <a href="./?_cmd=texts" id="boxlink">External Texts</a><br />
+                        <a href="./?_cmd=vars" id="boxlink">External Variables</a><br />
+                        <a href="./?_cmd=ha" id="boxlink">Hotel Alert</a><br />
+					    </p></td>
+
+					</tr>
+				</table>
+                                <br />
+                <table id="box" cellspacing="0" cellpadding="4" border="0" style="width: 200px;">
+					<tr>
+						<td style="border:1px solid #000000;" id="boxtitle">Usuarios y Moderaci&oacute;n</td>
+					</tr> 
+					<tr>
+						<td style="border:1px solid #000000; border-top-width: 0px;">
+						<p>
+                        <a href="./?_cmd=bans" id="boxlink">Baneos</a><br />
+                        <a href="./?_cmd=iptool" id="boxlink">Herramienta de direcci&oacute;n IP</a><br />
+                        <a href="./?_cmd=chatlogs" id="boxlink">Chatlogs</a><br />
+                        <a href="./?_cmd=livechatlogs" id="boxlink">Chatlogs en vivo</a><br />
+                        <a href="./?_cmd=vouchers" id="boxlink">C&oacute;digos de cr&eacute;ditos</a><br />
+                        <a href="./?_cmd=polls" id="boxlink">Encuestas</a><br />
+                        </p>	
+						</td>
+                        
+					</tr>
+				</table>
+                                <br />
+                <table id="box" cellspacing="0" cellpadding="4" border="0" style="width: 200px;">
+					<tr>
+						<td style="border:1px solid #000000;" id="boxtitle">Website</td>
+					</tr> 
+					<tr>
+						<td style="border:1px solid #000000; border-top-width: 0px;">
+						<p>
+                        <a href="./?_cmd=hotstuff" id="boxlink">Noticiones</a><br />
+                        <a href="./?_cmd=newspublish" id="boxlink">Escribir una noticia</a><br />
+                        <a href="./?_cmd=news" id="boxlink">Administrar notcicias</a><br />
+                        </p>	
+						</td>
+                        
+					</tr>
+				</table>
+                <br />
+                                <table id="box" cellspacing="0" cellpadding="4" border="0" style="width: 200px;">
+					<tr>
+						<td style="border:1px solid #000000;" id="boxtitle">Cat&aacute;logo</td>
+					</tr> 
+					<tr>
+						<td style="border:1px solid #000000; border-top-width: 0px;">
+						<p>
+                        <a href="./?_cmd=ot-def" id="boxlink">Definiciones de objetos</a><br />
+                        <a href="./?_cmd=ot-pages" id="boxlink">P&aacute;ginas del cat&aacute;logo</a><br />
+                        <a href="./?_cmd=ot-cata-items" id="boxlink">Objetos del cat&aacute;logo</a><br />
+                        <a href="./?_cmd=furnifinder" id="boxlink">Buscador de furni nuevo/perdido</a><a href="#" id="boxlink"></a>
+                        </p>	
+						</td>
+                        
+					</tr>
+				</table>
+                
+</td>
+
+<td colspan="2" id="main" valign="top">
+<!-- Finish 1 -->
+
+<h1>Principal</h1>
+<p>El Housekeeping es una herramienta, que puede ser usada para la   administraci&oacute;n del Hotel, no es necesario est&aacute;r conectado en el Hotel   para poder usarlo.</p>
+<p> Este sitio est&aacute; solo disponible para los Staffs, tu   rango te permite poder ingresar</p>
+<br /><br />
+<div style="width: 50%; border: 1px dotted; padding: 2px; margin: 0;">
+  <h2 style="margin: 0;"> Reglas de Staff</h2>
+  <div style="padding: 5px;">
+    <p>1-.No pedir un rango superior.</p>
+    <p>2-.No abusar de su poder (no muchas alertas, no sacar toda la sala, etc).</p>
+    <p>3-.Ofrecerle la mejor informaci&oacute;n a los usuarios de Habbo Lan.</p>
+    <p>4-.Los rango se subiran un d&iacute;a especial, no est&aacute; claro cu&aacute;l.</p>
+    <p>5-.Hacer su trabajo vigilando salas y apoyando al hotel.</p>
+    <p>6-.Respeto a usuarios del Hotel y a miembros de la administraci&oacute;n.</p>
+    <p>7-.Dar la bienvenida a los nuevos usuarios de Habbo Lan.</p>
+    <p>8-.Orientar a los nuevos usuarios.</p>
+    <p>9-.No banear sin raz&oacute;n.</p>
+    <p>10-.Es repetida para que entiendan Respetarse entre ambos como equipo adminitrativo y usuarios de Habbo Lan.</p>
+  </div>
+</div>
+<br /><br />
+<div style="width: 50%; border: 1px dotted; padding: 2px; margin: 0;">
+  <h2 style="margin: 0;"> Foro Staff </h2>
+  <div style="padding: 5px;">
+    <p> Entra al Foro Staff donde puedes hablar sobre sugerencias, ideas, situaciones, discusiones, etc.</p>
+    <h3><a href="./index.php?_cmd=forum">Entrar al <strong>Foro Staff</strong></a></h3>
+  </div>
+</div>
+<br /><hr />
+
+<!-- Finish 2 -->
+</td>
+
+</tr>
+</table>
+<br />
+<p>Copyright &copy; 2011 Thebbo. Powered by Thebbo/Habbo Lan. Based on uberCMS Housekeeping</p>
+</center>
+</body>
+</html>
