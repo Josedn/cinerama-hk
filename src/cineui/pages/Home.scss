@@ -1,6 +1,29 @@
+.login-page {
+    display: flex;
+    justify-content: center;
+    padding: 7px;
+}
+
+.information-box__title {
+    margin: 0;
+}
+
+.login-page__column--spacer {
+    width: 40px;
+}
+
+.login-page__column--right {
+    width: 300px;
+}
+
+.login-page__column--left {
+    width: 200px;
+}
+
 .login-box {
     border: 1px solid #000000;
-    width: 200px;
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .login-box__title {
@@ -8,6 +31,7 @@
     color: #ffffff;
     font-weight: bold;
     padding: 4px;
+    border-bottom: 1px solid #000000;
 }
 
 .login-box__form {
@@ -31,4 +55,17 @@
     font-size: inherit;
     font-weight: inherit;
     box-sizing: border-box;
+    height: 22px;
+}
+
+.input-section__button {
+    font-family: inherit;
+    font-size: inherit;
+    font-weight: inherit;
+    box-sizing: border-box;
+    font-size: 12px;
+}
+
+.login-page__text {
+    margin-top: 14px;
 }
