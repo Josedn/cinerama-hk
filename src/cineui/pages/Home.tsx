@@ -25,7 +25,7 @@ export default function HomePage() {
                     </div>
                 </div>
                 <div className="login-page__text">
-                    Got a problem with the VPN Network? Please report it quickly to the Habbo team!
+                    Got a problem with the VPN Network? Please report it quickly to the Cinerama team!
                 </div>
             </div>
             <div className="login-page__column login-page__column--spacer"></div>
@@ -37,9 +37,9 @@ export default function HomePage() {
                 <p className="information-box__text">
                     Actions which are performed in Housekeeping are 24 hours and 7 days per week logged.
                     <br /><br />
-                    Please make sure you're connected with in the Thebbo VPN Network before you Log In.
+                    Please make sure you're connected with in the Cinerama VPN Network before you Log In.
                     <br /><br />
-                    You are not a moderator or an administrator? Please click <a href="/">here</a> to return to Habbo!
+                    You are not a moderator or an administrator? Please click <a href="/">here</a> to return to Cinerama!
                 </p>
             </div>
         </div>
