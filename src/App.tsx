@@ -1,5 +1,5 @@
 import React from 'react';
-import CineUI from './cineui/CineUI';
+import CineUI from './housekeeping_ui/CineUI';
 
 function App() {
   return (
