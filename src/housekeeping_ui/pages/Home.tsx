@@ -1,26 +1,49 @@
+import { useState } from "react";
+import { useAppDispatch, useAppSelector } from "../../housekeeping_state/hooks";
+import { loginAsync, selectToken } from "../../housekeeping_state/reducers/loginSlice";
 import "./Home.scss";
 
 export default function HomePage() {
+    const loginToken = useAppSelector(selectToken);
+    const dispatch = useAppDispatch();
+
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("");
+
+    const doLogin = () => {
+        dispatch(loginAsync({ username, password }));
+    };
+
     return (
         <div className="login-page">
             <div className="login-page__column login-page__column--left">
                 <div className="login-box">
                     <div className="login-box__title">
-                        Login
+                        Login {loginToken}
                     </div>
                     <div className="login-box__form">
                         <div className="input-section">
                             Username:
-                            <input className="input-section__input" type="text">
+                            <input
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="input-section__input"
+                                type="text">
                             </input>
                         </div>
                         <div className="input-section">
                             Password:
-                            <input className="input-section__input" type="password">
+                            <input
+                                value={password}
+                                onChange={(e) => setPassword(e.target.value)}
+                                className="input-section__input" 
+                                type="password">
                             </input>
                         </div>
                         <div className="input-section input-section--submit">
-                            <button className="input-section__button">Login</button>
+                            <button
+                                onClick={doLogin}
+                                className="input-section__button">Login</button>
                         </div>
                     </div>
                 </div>

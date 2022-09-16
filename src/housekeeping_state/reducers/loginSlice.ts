@@ -21,8 +21,8 @@ const initialState: LoginState = {
 // typically used to make async requests.
 export const loginAsync = createAsyncThunk(
     'login/fetchLogin',
-    async (data: { user: string, password: string }) => {
-        const response = await fetchLogin(data.user, data.password);
+    async (data: { username: string, password: string }) => {
+        const response = await fetchLogin(data.username, data.password);
         // The value we return becomes the `fulfilled` action payload
         return response.data;
     }
@@ -70,7 +70,7 @@ export const loginSlice = createSlice({
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectToken = (state: RootState) => state.login.token;
-export const selectLoggedIn = (state: RootState) => state.login.token != "" && state.login.loggedIn;
+export const selectLoggedIn = (state: RootState) => state.login.token !== "" && state.login.loggedIn;
 
 export const { logIn, logOut } = loginSlice.actions;
 
