@@ -2,13 +2,13 @@ import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk, RootState } from "../store";
 import { fetchLogin } from "../clients/LoginClient";
 
-export interface CounterState {
+export interface LoginState {
     loggedIn: boolean;
     token: string;
     status: "idle" | "loading" | "failed";
 }
 
-const initialState: CounterState = {
+const initialState: LoginState = {
     loggedIn: false,
     token: "",
     status: "idle",
@@ -28,7 +28,7 @@ export const loginAsync = createAsyncThunk(
     }
 );
 
-export const counterSlice = createSlice({
+export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
@@ -72,7 +72,7 @@ export const counterSlice = createSlice({
 export const selectToken = (state: RootState) => state.login.token;
 export const selectLoggedIn = (state: RootState) => state.login.token != "" && state.login.loggedIn;
 
-export const { logIn, logOut } = counterSlice.actions;
+export const { logIn, logOut } = loginSlice.actions;
 
 // We can also write thunks by hand, which may contain both sync and async logic.
 // Here's an example of conditionally dispatching actions based on current state.
@@ -85,4 +85,4 @@ export const logOutIfLoggedIn =
             }
         };
 
-export default counterSlice.reducer;
+export default loginSlice.reducer;
