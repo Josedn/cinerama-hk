@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { useAppDispatch, useAppSelector } from "../../housekeeping_state/hooks";
-import { loginAsync, selectToken } from "../../housekeeping_state/reducers/loginSlice";
-import "./Home.scss";
+import { useAppDispatch, useAppSelector } from "../../../housekeeping_state/hooks";
+import { loginAsync, selectToken } from "../../../housekeeping_state/reducers/loginSlice";
+import "./LoginPage.scss";
 
-export default function HomePage() {
+export default function LoginPage() {
     const loginToken = useAppSelector(selectToken);
     const dispatch = useAppDispatch();
 
