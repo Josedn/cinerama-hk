@@ -35,6 +35,50 @@ export default function HomePage() {
                 </div>
             </div>
             <div className="home-page__separator" />
+            <div className="home-page__wrapper">
+                <div className="home-page__navigator">
+                    <div className="navigator__block">
+                        <div className="navigator__header">
+                            Main
+                        </div>
+                        <ul className="navigator__list">
+                            <li className="navigator__list-item"><a href="/status">View status</a></li>
+                            <li className="navigator__list-item navigator__list-item--selected"><a href="/request-movie">Request movie</a></li>
+                            <li className="navigator__list-item"><a href="/status">View status</a></li>
+                            <li className="navigator__list-item"><a href="/request-movie">Request movie</a></li>
+                            <li className="navigator__list-item"><a href="/status">View status</a></li>
+                            <li className="navigator__list-item"><a href="/request-movie">Request movie</a></li>
+                        </ul>
+                    </div>
+                    <div className="navigator__block">
+                        <div className="navigator__header">
+                            Other
+                        </div>
+                        <ul className="navigator__list">
+                            <li className="navigator__list-item"><a href="/status">View status</a></li>
+                            <li className="navigator__list-item"><a href="/request-movie">Request movie</a></li>
+                        </ul>
+                    </div>
+                    <div className="navigator__block">
+                        <div className="navigator__header">
+                            Something
+                        </div>
+                        <ul className="navigator__list">
+                            <li className="navigator__list-item"><a href="/status">View status</a></li>
+                            <li className="navigator__list-item"><a href="/request-movie">Request movie</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div className="home-page__content">
+                    <h1 className="content__title">Hello world</h1>
+                    <p className="content__title">
+                        Welcome to cinerama housekeeping
+                    </p>
+                </div>
+            </div>
+            <div className="home-page_footer">
+                Copyright (c) 2022 - filmstock.tv
+            </div>
         </div>
     );
 }
