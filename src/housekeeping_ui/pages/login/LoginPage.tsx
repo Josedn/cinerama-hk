@@ -1,12 +1,12 @@
 import { useState } from "react";
-import { useAppDispatch } from "../../../housekeeping_state/hooks";
-import { loginAsync } from "../../../housekeeping_state/reducers/loginSlice";
+import { useAppDispatch, useAppSelector } from "../../../housekeeping_state/hooks";
+import { loginAsync, selectErrorMessage } from "../../../housekeeping_state/reducers/loginSlice";
 import RequireLoginRedirector from "../../containers/RequireLoginRedirector";
 import "./LoginPage.scss";
 
 export default function LoginPage() {
     const dispatch = useAppDispatch();
-
+    const errorMessage = useAppSelector(selectErrorMessage);
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
@@ -14,6 +14,15 @@ export default function LoginPage() {
     const doLogin = () => {
         dispatch(loginAsync({ username, password }));
     };
+
+    let errorContainer = <></>;
+    if (errorMessage.length > 0) {
+        errorContainer = (
+            <div className="login-page__text login-page__text--error">
+                {errorMessage}
+            </div>
+        );
+    }
 
     return (
         <>
@@ -50,6 +59,7 @@ export default function LoginPage() {
                             </div>
                         </div>
                     </div>
+                    {errorContainer}
                     <div className="login-page__text">
                         Got a problem with the VPN Network? Please report it quickly to the Cinerama team!
                     </div>

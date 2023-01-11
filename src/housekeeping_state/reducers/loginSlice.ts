@@ -3,15 +3,15 @@ import { AppThunk, RootState } from "../store";
 import { fetchLogin } from "../clients/LoginClient";
 
 export interface LoginState {
-    loggedIn: boolean;
     token: string;
     status: "idle" | "loading" | "failed";
+    errorMessage: string;
 }
 
 const initialState: LoginState = {
-    loggedIn: false,
     token: "",
     status: "idle",
+    errorMessage: "",
 };
 
 // The function below is called a thunk and allows us to perform async logic. It
@@ -24,7 +24,7 @@ export const loginAsync = createAsyncThunk(
     async (data: { username: string, password: string }) => {
         const response = await fetchLogin(data.username, data.password);
         // The value we return becomes the `fulfilled` action payload
-        return response.data;
+        return response;
     }
 );
 
@@ -33,16 +33,15 @@ export const loginSlice = createSlice({
     initialState,
     reducers: {
         // Use the PayloadAction type to declare the contents of `action.payload`
-        logIn: (state, action: PayloadAction<string>) => {
+        logIn: (state, action: PayloadAction<{ data: string, error: string }>) => {
             // Redux Toolkit allows us to write "mutating" logic in reducers. It
             // doesn't actually mutate the state because it uses the Immer library,
             // which detects changes to a "draft state" and produces a brand new
             // immutable state based off those changesƒ
-            state.token = action.payload;
-            state.loggedIn = true;
+            state.token = action.payload.data;
+            state.errorMessage = action.payload.error;
         },
         logOut: (state) => {
-            state.loggedIn = false;
             state.token = "";
         }
     },
@@ -55,13 +54,13 @@ export const loginSlice = createSlice({
             })
             .addCase(loginAsync.fulfilled, (state, action) => {
                 state.status = 'idle';
-                state.token = action.payload;
-                state.loggedIn = true;
+                state.token = action.payload.data;
+                state.errorMessage = action.payload.error;
             })
             .addCase(loginAsync.rejected, (state) => {
                 state.status = 'failed';
-                state.loggedIn = false;
                 state.token = "";
+                state.errorMessage = "Something went wrong";
             });
     },
 });
@@ -70,7 +69,7 @@ export const loginSlice = createSlice({
 // the state. Selectors can also be defined inline where they're used instead of
 // in the slice file. For example: `useSelector((state: RootState) => state.counter.value)`
 export const selectToken = (state: RootState) => state.login.token;
-export const selectLoggedIn = (state: RootState) => state.login.token !== "" && state.login.loggedIn;
+export const selectErrorMessage = (state: RootState) => state.login.errorMessage;
 
 export const { logIn, logOut } = loginSlice.actions;
 
@@ -79,7 +78,7 @@ export const { logIn, logOut } = loginSlice.actions;
 export const logOutIfLoggedIn =
     (): AppThunk =>
         (dispatch, getState) => {
-            const isLoggedIn = selectLoggedIn(getState());
+            const isLoggedIn = selectToken(getState()).length > 0;
             if (isLoggedIn) {
                 dispatch(logOut());
             }

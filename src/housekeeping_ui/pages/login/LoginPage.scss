@@ -70,6 +70,10 @@
     margin-top: 14px;
 }
 
+.login-page__text--error {
+    color: #f00000;
+}
+
 @media screen and (max-width:500px) {
     .login-page {
         flex-direction: column;
