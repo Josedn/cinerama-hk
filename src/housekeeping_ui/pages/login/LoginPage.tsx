@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { FormEvent, useState } from "react";
 import { useAppDispatch, useAppSelector } from "../../../housekeeping_state/hooks";
 import { loginAsync, selectErrorMessage } from "../../../housekeeping_state/reducers/loginSlice";
 import RequireLoginRedirector from "../../containers/RequireLoginRedirector";
@@ -11,7 +11,8 @@ export default function LoginPage() {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
 
-    const doLogin = () => {
+    const handleSubmit = (event: FormEvent) => {
+        event.preventDefault();
         dispatch(loginAsync({ username, password }));
     };
 
@@ -33,7 +34,7 @@ export default function LoginPage() {
                         <div className="login-box__title">
                             Login
                         </div>
-                        <div className="login-box__form">
+                        <form className="login-box__form" onSubmit={handleSubmit}>
                             <div className="input-section">
                                 Username:
                                 <input
@@ -54,10 +55,9 @@ export default function LoginPage() {
                             </div>
                             <div className="input-section input-section--submit">
                                 <button
-                                    onClick={doLogin}
                                     className="input-section__button">Login</button>
                             </div>
-                        </div>
+                        </form>
                     </div>
                     {errorContainer}
                     <div className="login-page__text">
