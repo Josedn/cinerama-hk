@@ -43,6 +43,7 @@ export const loginSlice = createSlice({
         },
         logOut: (state) => {
             state.token = "";
+            state.errorMessage = "";
         }
     },
     // The `extraReducers` field lets the slice handle actions defined elsewhere,

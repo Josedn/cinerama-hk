@@ -1,4 +1,6 @@
-import { useEffect } from "react";
+import { SyntheticEvent, useEffect } from "react";
+import { useAppDispatch } from "../../../housekeeping_state/hooks";
+import { logOut } from "../../../housekeeping_state/reducers/loginSlice";
 import RequireNotLoginRedirector from "../../containers/RequireNotLoginRedirector";
 import "./HomePage.scss";
 
@@ -6,6 +8,12 @@ export default function HomePage() {
     useEffect(() => {
         document.title = 'Cinerama HK - Home';
     });
+    const dispatch = useAppDispatch();
+
+    const onLogOut = (event: SyntheticEvent) => {
+        event.preventDefault();
+        dispatch(logOut());
+    };
 
     return (
         <>
@@ -34,7 +42,7 @@ export default function HomePage() {
                     </div>
 
                     <div className="home-page__header-column home-page__header-column--right">
-                        <a href="/">Log out</a>
+                        <a onClick={onLogOut} href="/">Log out</a>
                     </div>
                 </div>
                 <div className="home-page__separator" />
