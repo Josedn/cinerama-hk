@@ -22,18 +22,23 @@ const initialState: LoginState = {
 export const loginAsync = createAsyncThunk(
     'login/fetchLogin',
     async (data: { username: string, password: string }) => {
-        const response = await fetchLogin(data.username, data.password);
+        const response: LoginResult = await fetchLogin(data.username, data.password);
         // The value we return becomes the `fulfilled` action payload
         return response;
     }
 );
+
+interface LoginResult {
+    data: string;
+    error: string;
+}
 
 export const loginSlice = createSlice({
     name: 'login',
     initialState,
     reducers: {
         // Use the PayloadAction type to declare the contents of `action.payload`
-        logIn: (state, action: PayloadAction<{ data: string, error: string }>) => {
+        oldlogIn: (state, action: PayloadAction<LoginResult>) => {
             // Redux Toolkit allows us to write "mutating" logic in reducers. It
             // doesn't actually mutate the state because it uses the Immer library,
             // which detects changes to a "draft state" and produces a brand new
@@ -41,9 +46,27 @@ export const loginSlice = createSlice({
             state.token = action.payload.data;
             state.errorMessage = action.payload.error;
         },
-        logOut: (state) => {
+        oldlogOut: (state) => {
             state.token = "";
             state.errorMessage = "";
+        },
+        logIn: {
+            reducer: (state, action: PayloadAction<LoginResult>) => {
+                state.token = action.payload.data;
+                state.errorMessage = action.payload.error;
+            },
+            prepare: (data: string, error: string) => {
+                return { payload: { data, error } };
+            }
+        },
+        logOut: {
+            reducer: (state) => {
+                state.token = "";
+                state.errorMessage = "";
+            },
+            prepare: () => {
+                return { payload: {}, something: {hello: true} };
+            }
         }
     },
     // The `extraReducers` field lets the slice handle actions defined elsewhere,
