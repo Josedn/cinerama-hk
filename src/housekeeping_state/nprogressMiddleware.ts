@@ -3,7 +3,7 @@ import nProgress from "nprogress";
 
 let lastRequestId = "";
 
-export const middleware: Middleware =
+export const nprogressMiddleware: Middleware =
     ({ dispatch }) =>
         (next) =>
             (action): void => {
