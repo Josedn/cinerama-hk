@@ -14,6 +14,11 @@ const initialState: LoginState = {
     errorMessage: "",
 };
 
+const showProgressThunkOptions = {
+    getPendingMeta: () => {
+        return { nprogress: true };
+    }
+};
 // The function below is called a thunk and allows us to perform async logic. It
 // can be dispatched like a regular action: `dispatch(incrementAsync(10))`. This
 // will call the thunk with the `dispatch` function as the first argument. Async
@@ -21,12 +26,11 @@ const initialState: LoginState = {
 // typically used to make async requests.
 export const loginAsync = createAsyncThunk(
     'login/fetchLogin',
-    async (data: { username: string, password: string }) => {
+    async (data: { username: string, password: string }, { extra, rejectWithValue, fulfillWithValue }) => {
         const response: LoginResult = await fetchLogin(data.username, data.password);
         // The value we return becomes the `fulfilled` action payload
         return response;
-    }
-);
+    }, showProgressThunkOptions);
 
 interface LoginResult {
     data: string;
@@ -65,7 +69,7 @@ export const loginSlice = createSlice({
                 state.errorMessage = "";
             },
             prepare: () => {
-                return { payload: {}, something: {hello: true} };
+                return { payload: {}, something: { hello: true } };
             }
         }
     },
