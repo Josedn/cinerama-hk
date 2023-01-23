@@ -72,5 +72,5 @@ export const getAllStreams = (): Promise<SwarmStats[]> => {
 };
 
 export const generateDownloadUrlForStream = (infohash: string): string => {
-    return STREAM_ENDPOINT + infohash + "/download/0";
+    return API_URL + STREAM_ENDPOINT + infohash + "/download/0";
 };
