@@ -1,7 +1,8 @@
 import { SwarmStats } from "./cineStreamTypes";
+import ConfigManager from "../../utils/ConfigManager";
 
-const API_URL = 'http://stream.filmstock.tv';
-const API_KEY = "";
+const API_URL = ConfigManager.getCineStreamApiUrl();
+const API_KEY = ConfigManager.getCineStreamApiKey();
 
 const STREAM_ENDPOINT = "/stream/";
 
