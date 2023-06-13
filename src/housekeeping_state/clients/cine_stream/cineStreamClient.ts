@@ -1,15 +1,13 @@
 import { SwarmStats } from "./cineStreamTypes";
 import ConfigManager from "../../utils/ConfigManager";
-
-const API_URL = ConfigManager.getCineStreamApiUrl();
-const API_KEY = ConfigManager.getCineStreamApiKey();
+import { ConfigKeys } from "../../utils/ConfigKeys";
 
 const STREAM_ENDPOINT = "/stream/";
+const API_URL = ConfigManager.getString(ConfigKeys.REACT_APP_CINE_STREAM_API_URL);
 
 const headers = (() => {
     const headers = new Headers();
     headers.append("Content-Type", "application/json");
-    headers.append("cinerama-api-key", API_KEY);
     return headers;
 })();
 

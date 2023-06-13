@@ -1,49 +1,31 @@
-import dotenv from "dotenv";
 import { ConfigKeys } from "./ConfigKeys";
+import Logger, { LogLevel } from "cinerama-common/lib/misc/Logger";
+
+const writeLine = Logger.generateLogger("ConfigManager");
 
 class ConfigManager {
-    constructor() {
-        const result = dotenv.config();
-        if (result.error) {
-            console.log("Error loading .env file: " + result.error.message);
-        }
-    }
 
-    getCineStreamApiUrl() {
-        return this.getString(ConfigKeys.REACT_APP_CINE_STREAM_API_URL, "http://localhost/");
-    }
+  private static getKeyString(key: ConfigKeys): string {
+    return ConfigKeys[key];
+  }
 
-    getCineStreamApiKey() {
-        return this.getString(ConfigKeys.REACT_APP_CINE_STREAM_API_URL, "default-api-key");
+  public getInt(key: ConfigKeys, failsafe?: number): number {
+    const value = process.env[ConfigManager.getKeyString(key)];
+    if (value != null) {
+      return parseInt(value);
     }
+    writeLine("Used failsafe value " + failsafe + " for " + key, LogLevel.Warning);
+    return failsafe || 0;
+  }
 
-    getUseMocks() {
-        return this.getBoolean(ConfigKeys.REACT_APP_USE_MOCKS, false);
+  public getString(key: ConfigKeys, failsafe?: string): string {
+    const value = process.env[ConfigManager.getKeyString(key)];
+    if (value != null) {
+      return value;
     }
-
-    private getBoolean(key: ConfigKeys, failsafe: boolean): boolean {
-        const value = process.env[key];
-        if (value != null) {
-            return value === "true";
-        }
-        return failsafe;
-    }
-
-    private getInt(key: ConfigKeys, failsafe: number): number {
-        const value = process.env[key];
-        if (value != null) {
-            return parseInt(value);
-        }
-        return failsafe;
-    }
-
-    private getString(key: ConfigKeys, failsafe: string): string {
-        const value = process.env[key];
-        if (value != null) {
-            return value;
-        }
-        return failsafe;
-    }
+    writeLine("Used failsafe value " + failsafe + " for " + key, LogLevel.Warning);
+    return failsafe || "";
+  }
 }
 
 const instance = new ConfigManager();

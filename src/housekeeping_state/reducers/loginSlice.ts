@@ -1,6 +1,6 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 import { AppThunk, RootState } from "../store";
-import { fetchLogin } from "../clients/LoginClient";
+import { fetchLogin, LoginResult } from "../clients/loginService";
 
 export interface LoginState {
     token: string;
@@ -31,11 +31,6 @@ export const loginAsync = createAsyncThunk(
         // The value we return becomes the `fulfilled` action payload
         return response;
     }, showProgressThunkOptions);
-
-interface LoginResult {
-    data: string;
-    error: string;
-}
 
 export const loginSlice = createSlice({
     name: 'login',
