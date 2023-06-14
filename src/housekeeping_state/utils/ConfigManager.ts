@@ -4,7 +4,6 @@ import Logger, { LogLevel } from "cinerama-common/lib/misc/Logger";
 const writeLine = Logger.generateLogger("ConfigManager");
 
 class ConfigManager {
-
   private static getKeyString(key: ConfigKeys): string {
     return ConfigKeys[key];
   }
