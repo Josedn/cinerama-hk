@@ -1,4 +1,4 @@
-export default function Navigator() {
+export default function MainNavigator() {
   return (
     <>
       <div className="home-page__navigator">
