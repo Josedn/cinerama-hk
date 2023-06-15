@@ -11,7 +11,7 @@
     "@types/node": "^16.11.48",
     "@types/react": "^18.0.17",
     "@types/react-dom": "^18.0.6",
-    "cinerama-common": "github:josedn/cinerama-common#bcc434fc9bd1edea9dcaca26b7ca6e4d34607130",
+    "cinerama-common": "github:josedn/cinerama-common#eb89f1552fb993f69fb0b47aba9679ab49814ea6",
     "jazzi": "^3.0.7",
     "nprogress": "^0.2.0",
     "prettier": "^2.8.8",

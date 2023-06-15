@@ -12,11 +12,15 @@ const headers = (() => {
   return headers;
 })();
 
-const preparePost = async <T>(rawBody: any, endpoint: string): Promise<EitherType<string, T>> => {
-  var body = JSON.stringify(rawBody);
+const prepareRequest = async <T>(
+  method: string,
+  endpoint: string,
+  rawBody?: any,
+): Promise<EitherType<CineError, T>> => {
+  const body = rawBody ? JSON.stringify(rawBody) : undefined;
 
   const options: RequestInit = {
-    method: "POST",
+    method,
     mode: "cors",
     headers,
     body,
@@ -27,13 +31,22 @@ const preparePost = async <T>(rawBody: any, endpoint: string): Promise<EitherTyp
       return Either.Right((await response.json()) as T);
     } else {
       const cineError = (await response.json()).error as CineError;
-      return Either.Left(cineError.errorMessage);
+      return Either.Left(cineError);
     }
   } catch (err) {
-    return Either.Left("Something went wrong");
+    return Either.Left(CineError.INTERNAL_ERROR);
   }
 };
 
-export const postLogin = (username: string, password: string): Promise<EitherType<string, string>> => {
-  return preparePost({ username, password }, "/login");
+export interface UserData {
+  username: string;
+  lastLogin: Date;
+}
+
+export const postLogin = (username: string, password: string): Promise<EitherType<CineError, string>> => {
+  return prepareRequest("POST", "/login", { username, password });
+};
+
+export const getUser = (sessionToken: string): Promise<EitherType<CineError, UserData>> => {
+  return prepareRequest("GET", "/user/" + sessionToken);
 };
